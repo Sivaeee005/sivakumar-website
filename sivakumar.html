@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sivakumar - Life Goals</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background-color: #f5f5f5;
+            color: #333;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        h2 {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: #e0e0e0;
+            margin: 8px 0;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .completed {
+            text-decoration: line-through;
+            color: #888;
+            background: #d4edda;
+        }
+        button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .complete-btn {
+            background: #28a745;
+            color: white;
+        }
+        .delete-btn {
+            background: #dc3545;
+            color: white;
+        }
+        input {
+            padding: 8px;
+            width: 70%;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Sivakumar</h1>
+    <p>My Life Goals</p>
+
+    <h2>Short-Term Goals</h2>
+    <ul id="short-term-list">
+        <li>Learn Instrumentation Inspection <button class="complete-btn" onclick="toggleComplete(this)">✔</button> <button class="delete-btn" onclick="deleteGoal(this)">✖</button></li>
+        <li>Improve English Skills <button class="complete-btn" onclick="toggleComplete(this)">✔</button> <button class="delete-btn" onclick="deleteGoal(this)">✖</button></li>
+    </ul>
+    <input type="text" id="short-term-input" placeholder="Add new goal">
+    <button onclick="addGoal('short-term-list', 'short-term-input')">Add</button>
+
+    <h2>Long-Term Goals</h2>
+    <ul id="long-term-list">
+        <li>Buy Farmland in Chidambaram <button class="complete-btn" onclick="toggleComplete(this)">✔</button> <button class="delete-btn" onclick="deleteGoal(this)">✖</button></li>
+        <li>Build a Strong Investment Portfolio <button class="complete-btn" onclick="toggleComplete(this)">✔</button> <button class="delete-btn" onclick="deleteGoal(this)">✖</button></li>
+    </ul>
+    <input type="text" id="long-term-input" placeholder="Add new goal">
+    <button onclick="addGoal('long-term-list', 'long-term-input')">Add</button>
+</div>
+
+<script>
+    function toggleComplete(button) {
+        let li = button.parentElement;
+        li.classList.toggle("completed");
+    }
+
+    function deleteGoal(button) {
+        let li = button.parentElement;
+        li.remove();
+    }
+
+    function addGoal(listId, inputId) {
+        let input = document.getElementById(inputId);
+        let goalText = input.value.trim();
+        if (goalText === "") return;
+
+        let list = document.getElementById(listId);
+        let li = document.createElement("li");
+        li.innerHTML = `${goalText} <button class="complete-btn" onclick="toggleComplete(this)">✔</button> <button class="delete-btn" onclick="deleteGoal(this)">✖</button>`;
+        list.appendChild(li);
+        input.value = "";
+    }
+</script>
+
+</body>
+</html>
